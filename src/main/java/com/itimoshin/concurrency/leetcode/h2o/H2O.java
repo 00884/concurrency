@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 class H2O {
 
     private final Semaphore oSemaphore = new Semaphore(2);
-    private final Semaphore hSemaphore = new Semaphore(0);
+    private final Semaphore hSemaphore = new Semaphore(2);
     private AtomicInteger count = new AtomicInteger(0);
 
     private static String INPUT_1 = "HHHHHHHHHHHHHHHHOHHHHHHHHHHHHHHHHHHHHHOHHOHHHHOOHHHOOOOHHOOHOHHHHHOOHOHHHOOOOOOHHHHHHHHHHOHHOHHHHOOHHHOOOOHHOOHOHHHHHHHHHHHHHHHOHHOHHHHOOHHHOOOOHHOOHOHHHHHOOHOHHHOOOOOOHHHHHHHHHOOHOHHHOOOOOOHHHHHHHHHOHHHHOOHHHOOOOHHOOHOHHHHHOOHOHHHOOOOOOHHHHHHHHHHHHHOHHOHHHHOOHHHOOOOHHOOHOHHHHHOOHHHHHHHHHHHOHHOHHHHOOHHHOOOOHHOOHOHHHHHOOHOHHHOOOOOOHHHHHHHHHOHHHOOOOOOHHHHHHHHH";
@@ -48,7 +48,7 @@ class H2O {
         new H2O().start(INPUT_1);
     }
 
-    private void print(Character character) {
+    private synchronized void print(Character character) {
         System.out.print(character);
         if (count.incrementAndGet() % 3 == 0) {
             System.out.println(": " + count.get() / 3);
