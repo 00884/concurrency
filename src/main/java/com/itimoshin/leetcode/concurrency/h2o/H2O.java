@@ -1,4 +1,4 @@
-package com.itimoshin.concurrency.leetcode.h2o;
+package com.itimoshin.leetcode.concurrency.h2o;
 
 import lombok.SneakyThrows;
 

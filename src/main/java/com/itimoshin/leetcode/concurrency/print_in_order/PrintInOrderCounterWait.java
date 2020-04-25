@@ -1,4 +1,4 @@
-package com.itimoshin.concurrency.leetcode.print_in_order;
+package com.itimoshin.leetcode.concurrency.print_in_order;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,7 +39,7 @@ import java.util.Map;
  * to imply the ordering. The input format you see is mainly to ensure our tests' comprehensiveness.
  */
 
-public class PrintInOrderCounterLoop {
+public class PrintInOrderCounterWait {
 
     private final Runnable r1 = () -> System.out.println("first");
     private final Runnable r2 = () -> System.out.println("second");
@@ -48,13 +48,13 @@ public class PrintInOrderCounterLoop {
     private int flag = 0;
 
 
-    public PrintInOrderCounterLoop() {
+    public PrintInOrderCounterWait() {
 
     }
 
     public static void main(String[] args) {
         System.out.println("Args: " + Arrays.toString(args));
-        PrintInOrderCounterLoop instance = new PrintInOrderCounterLoop();
+        PrintInOrderCounterWait instance = new PrintInOrderCounterWait();
         Map<String, Thread> map = new HashMap<>();
         map.put("1", new Thread() {
             @Override

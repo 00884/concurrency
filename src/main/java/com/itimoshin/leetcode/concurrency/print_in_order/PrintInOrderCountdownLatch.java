@@ -1,8 +1,9 @@
-package com.itimoshin.concurrency.leetcode.print_in_order;
+package com.itimoshin.leetcode.concurrency.print_in_order;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Suppose we have a class:
@@ -39,22 +40,23 @@ import java.util.Map;
  * to imply the ordering. The input format you see is mainly to ensure our tests' comprehensiveness.
  */
 
-public class PrintInOrderCounterWait {
+public class PrintInOrderCountdownLatch {
 
     private final Runnable r1 = () -> System.out.println("first");
     private final Runnable r2 = () -> System.out.println("second");
     private final Runnable r3 = () -> System.out.println("third");
 
-    private int flag = 0;
+    private final CountDownLatch cdl1 = new CountDownLatch(1);
+    private final CountDownLatch cdl2 = new CountDownLatch(1);
 
 
-    public PrintInOrderCounterWait() {
+    public PrintInOrderCountdownLatch() {
 
     }
 
     public static void main(String[] args) {
         System.out.println("Args: " + Arrays.toString(args));
-        PrintInOrderCounterWait instance = new PrintInOrderCounterWait();
+        PrintInOrderCountdownLatch instance = new PrintInOrderCountdownLatch();
         Map<String, Thread> map = new HashMap<>();
         map.put("1", new Thread() {
             @Override
@@ -94,20 +96,19 @@ public class PrintInOrderCounterWait {
     public void first() throws InterruptedException {
         // printFirst.run() outputs "first". Do not change or remove this line.
         r1.run();
-        flag++;
+        cdl1.countDown();
     }
 
     public void second() throws InterruptedException {
-        while (flag < 1);
         // printSecond.run() outputs "second". Do not change or remove this line.
+        cdl1.await();
         r2.run();
-        flag++;
+        cdl2.countDown();
     }
 
     public void third() throws InterruptedException {
-        while (flag < 2);
         // printThird.run() outputs "third". Do not change or remove this line.
+        cdl2.await();
         r3.run();
-        flag++;
     }
 }

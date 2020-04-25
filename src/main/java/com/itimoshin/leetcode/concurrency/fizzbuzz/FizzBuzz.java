@@ -1,4 +1,4 @@
-package com.itimoshin.concurrency.leetcode.fizzbuzz;
+package com.itimoshin.leetcode.concurrency.fizzbuzz;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

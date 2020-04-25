@@ -1,4 +1,4 @@
-package com.itimoshin.concurrency.leetcode.permutations;
+package com.itimoshin.leetcode.algorithms.permutations;
 
 import java.util.ArrayList;
 import java.util.Arrays;

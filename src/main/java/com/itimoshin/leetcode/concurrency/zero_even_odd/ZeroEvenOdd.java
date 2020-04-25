@@ -1,7 +1,6 @@
-package com.itimoshin.concurrency.leetcode.zero_even_odd;
+package com.itimoshin.leetcode.concurrency.zero_even_odd;
 
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntConsumer;
 
 /**
